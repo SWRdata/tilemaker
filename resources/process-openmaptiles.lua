@@ -86,16 +86,21 @@ function node_function(node)
 		local pop = tonumber(node:Find("population")) or 0
 
 		if     place == "continent"     then mz=0
-		elseif place == "country"       then
-			if     pop>50000000 then rank=1; mz=1
-			elseif pop>20000000 then rank=2; mz=2
-			else                     rank=3; mz=3 end
-		elseif place == "state"         then mz=4
-		elseif place == "city"          then mz=5
-		elseif place == "town" and pop>8000 then mz=7
-		elseif place == "town"          then mz=8
-		elseif place == "village" and pop>2000 then mz=9
-		elseif place == "village"       then mz=10
+		elseif place == "country" then
+			if     pop > 50000000   then mz= 1; rank=1
+			elseif pop > 20000000   then mz= 2; rank=2
+			else                         mz= 3; rank=3 end
+		elseif place == "state"         then mz= 4
+		elseif place == "city" then
+			if     pop > 1000000    then mz= 4
+			elseif pop >  300000    then mz= 5
+			else                         mz= 6 end
+		elseif place == "town" then
+			if     pop > 8000       then mz= 7
+			else                         mz= 8 end
+		elseif place == "village" then
+			if     pop > 2000       then mz= 9
+			else                         mz=10 end
 		elseif place == "suburb"        then mz=11
 		elseif place == "hamlet"        then mz=12
 		elseif place == "neighbourhood" then mz=13
