@@ -30,15 +30,20 @@ function Set(list)
 end
 
 -- Meters per pixel if tile is 256x256
-ZRES5  = 4891.97
-ZRES6  = 2445.98
-ZRES7  = 1222.99
-ZRES8  = 611.5
-ZRES9  = 305.7
-ZRES10 = 152.9
-ZRES11 = 76.4
-ZRES12 = 38.2
-ZRES13 = 19.1
+ZRES0  = 40074000/256
+ZRES1  = ZRES0/2
+ZRES2  = ZRES1/2
+ZRES3  = ZRES2/2
+ZRES4  = ZRES3/2
+ZRES5  = ZRES4/2
+ZRES6  = ZRES5/2
+ZRES7  = ZRES6/2
+ZRES8  = ZRES7/2
+ZRES9  = ZRES8/2
+ZRES10 = ZRES9/2
+ZRES11 = ZRES10/2
+ZRES12 = ZRES11/2
+ZRES13 = ZRES12/2
 
 -- The height of one floor, in meters
 BUILDING_FLOOR_HEIGHT = 3.66
@@ -615,15 +620,18 @@ end
 -- Set minimum zoom level by area
 function SetMinZoomByArea(way)
 	local area=way:Area()
-	if     area>ZRES5^2  then way:MinZoom(6)
-	elseif area>ZRES6^2  then way:MinZoom(7)
-	elseif area>ZRES7^2  then way:MinZoom(8)
-	elseif area>ZRES8^2  then way:MinZoom(9)
-	elseif area>ZRES9^2  then way:MinZoom(10)
-	elseif area>ZRES10^2 then way:MinZoom(11)
-	elseif area>ZRES11^2 then way:MinZoom(12)
-	elseif area>ZRES12^2 then way:MinZoom(13)
-	else                      way:MinZoom(14) end
+	local size=area^0.5
+	if     size>ZRES3  then way:MinZoom(4)
+	elseif size>ZRES4  then way:MinZoom(5)
+	elseif size>ZRES5  then way:MinZoom(6)
+	elseif size>ZRES6  then way:MinZoom(7)
+	elseif size>ZRES7  then way:MinZoom(8)
+	elseif size>ZRES8  then way:MinZoom(9)
+	elseif size>ZRES9  then way:MinZoom(10)
+	elseif size>ZRES10 then way:MinZoom(11)
+	elseif size>ZRES11 then way:MinZoom(12)
+	elseif size>ZRES12 then way:MinZoom(13)
+	else                    way:MinZoom(14) end
 end
 
 -- Calculate POIs (typically rank 1-4 go to 'poi' z12-14, rank 5+ to 'poi_detail' z14)
